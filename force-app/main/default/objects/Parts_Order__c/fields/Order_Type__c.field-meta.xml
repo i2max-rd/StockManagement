@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Order_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Order Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Stock Order</fullName>
+                <default>false</default>
+                <label>Stock Order</label>
+            </value>
+            <value>
+                <fullName>Emergency Order</fullName>
+                <default>false</default>
+                <label>Emergency Order</label>
+            </value>
+            <value>
+                <fullName>Accessory Order</fullName>
+                <default>false</default>
+                <label>Accessory Order</label>
+            </value>
+            <value>
+                <fullName>Campaign Order</fullName>
+                <default>false</default>
+                <label>Campaign Order</label>
+            </value>
+            <value>
+                <fullName>SST Order</fullName>
+                <default>false</default>
+                <label>SST Order</label>
+            </value>
+            <value>
+                <fullName>Market Support</fullName>
+                <default>false</default>
+                <label>Market Support</label>
+            </value>
+            <value>
+                <fullName>Claim Order</fullName>
+                <default>false</default>
+                <label>Claim Order</label>
+            </value>
+            <value>
+                <fullName>Direct Takeout</fullName>
+                <default>false</default>
+                <label>Direct Takeout</label>
+            </value>
+            <value>
+                <fullName>AM Order</fullName>
+                <default>false</default>
+                <label>AM Order</label>
+            </value>
+            <value>
+                <fullName>Wholesale Order</fullName>
+                <default>false</default>
+                <label>Wholesale Order</label>
+            </value>
+            <value>
+                <fullName>Direct Purchasing Order</fullName>
+                <default>false</default>
+                <label>Direct Purchasing Order</label>
+            </value>
+            <value>
+                <fullName>Initial Order</fullName>
+                <default>false</default>
+                <label>Initial Order</label>
+            </value>
+            <value>
+                <fullName>Book/EPC Order</fullName>
+                <default>false</default>
+                <label>Book/EPC Order</label>
+            </value>
+            <value>
+                <fullName>Accident Vehicle Support</fullName>
+                <default>false</default>
+                <label>Accident Vehicle Support</label>
+            </value>
+            <value>
+                <fullName>Oil Order</fullName>
+                <default>false</default>
+                <label>Oil Order</label>
+            </value>
+            <value>
+                <fullName>Quotation Order</fullName>
+                <default>false</default>
+                <label>Quotation Order</label>
+            </value>
+            <value>
+                <fullName>Award Order</fullName>
+                <default>false</default>
+                <label>Award Order</label>
+            </value>
+            <value>
+                <fullName>Promotion Order</fullName>
+                <default>false</default>
+                <label>Promotion Order</label>
+            </value>
+            <value>
+                <fullName>VOR Order</fullName>
+                <default>false</default>
+                <label>VOR Order</label>
+            </value>
+            <value>
+                <fullName>Warranty Order</fullName>
+                <default>false</default>
+                <label>Warranty Order</label>
+            </value>
+            <value>
+                <fullName>Taxi Order</fullName>
+                <default>false</default>
+                <label>Taxi Order</label>
+            </value>
+            <value>
+                <fullName>Vendor Direct Shipment Order</fullName>
+                <default>false</default>
+                <label>Vendor Direct Shipment Order</label>
+            </value>
+            <value>
+                <fullName>D/C Order</fullName>
+                <default>false</default>
+                <label>D/C Order</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
