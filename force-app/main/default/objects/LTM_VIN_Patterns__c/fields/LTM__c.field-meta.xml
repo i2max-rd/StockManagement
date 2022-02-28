@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LTM__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <externalId>false</externalId>
+    <label>LTM</label>
+    <referenceTo>LTM__c</referenceTo>
+    <relationshipLabel>LTM VIN Patterns</relationshipLabel>
+    <relationshipName>LTM_VIN_Patterns</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>
