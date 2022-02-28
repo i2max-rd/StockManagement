@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Department_Type__c</fullName>
+    <externalId>false</externalId>
+    <label>Department Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>NSC</fullName>
+                <default>false</default>
+                <label>NSC</label>
+            </value>
+            <value>
+                <fullName>GOC</fullName>
+                <default>false</default>
+                <label>GOC</label>
+            </value>
+            <value>
+                <fullName>GFT</fullName>
+                <default>false</default>
+                <label>GFT</label>
+            </value>
+            <value>
+                <fullName>GTC</fullName>
+                <default>false</default>
+                <label>GTC</label>
+            </value>
+            <value>
+                <fullName>Port</fullName>
+                <default>false</default>
+                <label>Port</label>
+            </value>
+            <value>
+                <fullName>Body Shop</fullName>
+                <default>false</default>
+                <label>Body Shop</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -18,6 +18,34 @@
                 <behavior>Edit</behavior>
                 <field>Cost_Center_Code__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Country__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Department_Type__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Currency__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Status__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Language__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>SAP_Key__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>NSC_Department__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>
@@ -62,6 +90,21 @@
     <relatedLists>
         <fields>NAME</fields>
         <relatedList>Parts_Order__c.Department__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Parts_Inventory_Transaction__c.Service_Center__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>NAME</fields>
+        <relatedList>Department__c.NSC_Department__c</relatedList>
+    </relatedLists>
+    <relatedLists>
+        <fields>PRICEBOOK2.NAME</fields>
+        <fields>PRICEBOOK2.DESCRIPTION</fields>
+        <fields>PRICEBOOK2.LAST_UPDATE</fields>
+        <fields>PRICEBOOK2.IS_ACTIVE</fields>
+        <relatedList>Pricebook2.NSC__c</relatedList>
     </relatedLists>
     <showEmailCheckbox>false</showEmailCheckbox>
     <showHighlightsPanel>false</showHighlightsPanel>
