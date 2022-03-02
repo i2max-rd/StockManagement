@@ -3,6 +3,16 @@
     <custom>false</custom>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Asset.Latest_Mileage__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Asset.Mileage_Update_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Department__c.Cost_Center_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -761,6 +771,9 @@
         <field>Repair_Labor__c.Product__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <layoutAssignments>
+        <layout>Asset-Asset Layout</layout>
+    </layoutAssignments>
     <layoutAssignments>
         <layout>Department__c-Department Layout</layout>
     </layoutAssignments>
