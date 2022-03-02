@@ -48,6 +48,46 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Diagnostic_Trouble_Info__c.Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Diagnostic_Trouble_Info__c.Diagnostics_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Diagnostic_Trouble_Info__c.Diagnostics_Detailed_Sequence_No__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Diagnostic_Trouble_Info__c.External_Key__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Diagnostic_Trouble_Info__c.Fuel_Kind_Code__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Diagnostic_Trouble_Info__c.Is_Activity_Diagnostics__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Diagnostic_Trouble_Info__c.Occurrence_Datetime__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Diagnostic_Trouble_Info__c.Vehicle__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>LTM_VIN_Patterns__c.LTM__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -733,6 +773,9 @@
         <recordType>Department__c.Service_Center</recordType>
     </layoutAssignments>
     <layoutAssignments>
+        <layout>Diagnostic_Trouble_Info__c-Diagnostic Trouble Info Layout</layout>
+    </layoutAssignments>
+    <layoutAssignments>
         <layout>LTM_VIN_Patterns__c-LTM VIN Patterns Layout</layout>
     </layoutAssignments>
     <layoutAssignments>
@@ -792,6 +835,15 @@
         <allowRead>true</allowRead>
         <modifyAllRecords>true</modifyAllRecords>
         <object>Department__c</object>
+        <viewAllRecords>true</viewAllRecords>
+    </objectPermissions>
+    <objectPermissions>
+        <allowCreate>true</allowCreate>
+        <allowDelete>true</allowDelete>
+        <allowEdit>true</allowEdit>
+        <allowRead>true</allowRead>
+        <modifyAllRecords>true</modifyAllRecords>
+        <object>Diagnostic_Trouble_Info__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
     <objectPermissions>
