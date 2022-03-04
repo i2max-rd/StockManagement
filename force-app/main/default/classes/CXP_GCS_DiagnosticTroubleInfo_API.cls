@@ -40,7 +40,6 @@ global with sharing class CXP_GCS_DiagnosticTroubleInfo_API {
         List<Asset> assetList = [SELECT Id, VIN__c FROM Asset WHERE VIN__c IN :diagnosticTroubleInfoMap.keySet()];
         for (Asset a : assetList) {
                 diagnosticTroubleInfo.Vehicle__c = a.Id;
-                diagnosticTroubleInfo.VIN__c = a.VIN__c;
                 diagnosticTroubleInfoMap.put(diagnosticTroubleInfo.VIN__c, diagnosticTroubleInfo);
             }
 
