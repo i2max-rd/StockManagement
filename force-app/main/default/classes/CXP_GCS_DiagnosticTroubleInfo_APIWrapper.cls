@@ -35,7 +35,10 @@ public with sharing class CXP_GCS_DiagnosticTroubleInfo_APIWrapper {
     }
 
     public static CXP_GCS_DiagnosticTroubleInfo_APIWrapper parse(String json) {
-        return (CXP_GCS_DiagnosticTroubleInfo_APIWrapper) System.JSON.deserializeStrict(json, CXP_GCS_DiagnosticTroubleInfo_APIWrapper.class);
+        return (CXP_GCS_DiagnosticTroubleInfo_APIWrapper) System.JSON.deserializeStrict(
+            json,
+            CXP_GCS_DiagnosticTroubleInfo_APIWrapper.class
+        );
     }
 
     public class Response {
