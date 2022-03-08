@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
-    <fullName>MSRP__c</fullName>
+    <fullName>AMOSProductTypeCode__c</fullName>
     <externalId>false</externalId>
-    <label>MSRP</label>
-    <precision>13</precision>
+    <label>AMOSProductTypeCode</label>
+    <length>2</length>
     <required>false</required>
-    <scale>2</scale>
     <trackHistory>false</trackHistory>
-    <type>Number</type>
+    <type>Text</type>
     <unique>false</unique>
 </CustomField>
