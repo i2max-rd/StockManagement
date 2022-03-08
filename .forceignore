@@ -3,6 +3,8 @@
 #
 
 package.xml
+Diagnostic_Trouble_Info__c.VIN__c.indx-meta.xml
+Product2.External_Key__c.indx-meta.xml
 
 # LWC configuration files
 **/jsconfig.json
