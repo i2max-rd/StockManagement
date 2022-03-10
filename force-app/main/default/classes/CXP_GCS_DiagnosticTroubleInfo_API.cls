@@ -12,10 +12,11 @@ global with sharing class CXP_GCS_DiagnosticTroubleInfo_API {
             bodyWrapper.request.header.ifTotCnt,
             bodyWrapper.request.header.ifTrackingId
         );
-
+        Set<String> vinSet = new Set<String>();
+        Schema.SObjectField externalId = Diagnostic_Trouble_Info__c.Fields.External_Key__c;
         Map<String, Diagnostic_Trouble_Info__c> diagnosticTroubleInfoMap = new Map<String, Diagnostic_Trouble_Info__c>();
-        Diagnostic_Trouble_Info__c diagnosticTroubleInfo = new Diagnostic_Trouble_Info__c();
         for (CXP_GCS_DiagnosticTroubleInfo_APIWrapper.T_DATA bodyItem : bodyWrapper.request.payload.T_DATA) {
+            Diagnostic_Trouble_Info__c diagnosticTroubleInfo = new Diagnostic_Trouble_Info__c();
             if (String.isBlank(bodyItem.VIN)) {
                 populateResponseErrorMessage(responseInstance, 'E', ' ', 'VIN value is empty');
                 break;
@@ -42,17 +43,26 @@ global with sharing class CXP_GCS_DiagnosticTroubleInfo_API {
             diagnosticTroubleInfo.Occurrence_Datetime__c = Datetime.valueOf(dt);
             diagnosticTroubleInfo.Description__c = bodyItem.ET_BKDW_EXPL;
             diagnosticTroubleInfo.External_Key__c = bodyItem.VIN + bodyItem.DGN_DTL_SEQ;
-            diagnosticTroubleInfoMap.put(diagnosticTroubleInfo.VIN__c, diagnosticTroubleInfo);
+            diagnosticTroubleInfoMap.put(diagnosticTroubleInfo.External_Key__c, diagnosticTroubleInfo);
+            vinSet.add(diagnosticTroubleInfo.VIN__c);
+        }
+        for(Diagnostic_Trouble_Info__c d2 : diagnosticTroubleInfoMap.values()){
+            System.debug(d2);
         }
 
-        List<Asset> assetList = [SELECT Id, VIN__c FROM Asset WHERE VIN__c IN :diagnosticTroubleInfoMap.keySet()];
-        for (Asset a : assetList) {
-            diagnosticTroubleInfo.Vehicle__c = a.Id;
-            diagnosticTroubleInfoMap.put(diagnosticTroubleInfo.VIN__c, diagnosticTroubleInfo);
+        List<Asset> assetList = [SELECT Id, VIN__c FROM Asset WHERE VIN__c IN :vinSet];
+        for (Diagnostic_Trouble_Info__c d : diagnosticTroubleInfoMap.values()) {
+            for(Asset a : assetList){
+            if (a.VIN__c == d.VIN__c) {
+                d.Vehicle__c = a.Id;
+                
+            }
+            System.debug(d.External_Key__c);
+        }
         }
 
         if (String.isBlank(responseInstance.response.payload.ErrorMsg)) {
-            List<Database.SaveResult> insertResults = Database.insert(diagnosticTroubleInfoMap.values(), true);
+            Database.upsert(diagnosticTroubleInfoMap.values(), externalId, true);
             responseInstance.response.payload.ResultCode = 'Z';
             responseInstance.response.payload.ErrorCode = ' ';
             responseInstance.response.payload.ErrorMsg = ' ';

@@ -1,0 +1,35 @@
+<template>
+    <div class="p-container">
+        <lightning-card title="Parts Inventory Adjustment" icon-name="action:log_event" >
+            <lightning-record-view-form record-id={recordId} object-api-name="Parts_Inventory__c">
+                <div class="slds-grid" style="padding-left: 20px; padding-right: 20px">
+                    <div class="slds-col slds-size_1-of-2" style="padding-right: 10px">
+                        <lightning-output-field field-name="Part_Name__c"></lightning-output-field>
+                        <lightning-output-field field-name="Quantity__c"></lightning-output-field>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2" style="padding-left: 5px">
+                        <lightning-output-field field-name="Product_Code__c"></lightning-output-field>
+                    </div>
+                </div>
+            </lightning-record-view-form>
+            <lightning-record-edit-form object-api-name="Parts_Inventory_Transaction__c">
+                <div class="slds-grid" style="padding-left: 20px; padding-right: 20px">
+                    <div class="slds-col slds-size_1-of-2" style="padding-right: 10px">
+                        <table>
+                        <tr>
+                            <td><lightning-input-field field-name="Updated_Quantity__c" value={onChangeUpdatedQuantity} onchange={updatedQuantityHandler}></lightning-input-field></td>
+                            <td><lightning-input-field field-name="Confirmed_Quantity__c" value={onChangeConfirmedQuantity} onchange={confirmedQuantityHandler}></lightning-input-field></td>
+                        </tr>
+                        </table>
+                        <lightning-input-field field-name="Transaction_Date__c" onchange={transactionDateHandler} value={transactionDate}></lightning-input-field>
+                        <lightning-button type="submit" label="Save" style="padding-left: 4.5px" onclick={handleClick}> </lightning-button>
+                    </div>
+                    <div class="slds-col slds-size_1-of-2" style="padding-left: 5px">
+                        <lightning-input-field field-name="Status__c" onchange={statusHandler} value={status}></lightning-input-field>
+                        <lightning-input-field field-name="Description__c" onchange={descriptionHandler} value={description}></lightning-input-field>
+                    </div>
+                </div>
+            </lightning-record-edit-form>
+        </lightning-card>
+    </div>
+</template>
