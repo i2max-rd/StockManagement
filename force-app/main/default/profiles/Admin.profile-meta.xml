@@ -21,6 +21,10 @@
         <apexClass>CXP_GCS_DiagnosticTroubleInfo_APIWrapper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <classAccesses>
+        <apexClass>TransactionController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
     <custom>false</custom>
     <fieldPermissions>
         <editable>true</editable>
@@ -344,11 +348,6 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Parts_Inventory_Transaction__c.Transaction_Type__c</field>
-        <readable>true</readable>
-    </fieldPermissions>
-    <fieldPermissions>
-        <editable>true</editable>
         <field>Parts_Inventory_Transaction__c.Updated_Quantity__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -373,7 +372,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>Parts_Inventory__c.Quantity__c</field>
         <readable>true</readable>
     </fieldPermissions>
