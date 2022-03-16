@@ -3,12 +3,16 @@ import { getRecord, updateRecord } from 'lightning/uiRecordApi';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import createTrans from '@salesforce/apex/transactionController.createTrans';
 import Quantity__c_FIELD from '@salesforce/schema/Parts_Inventory__c.Quantity__c';
-
+import Updated_Quantity__c_FIELD from '@salesforce/schema/Parts_Inventory_Transaction__c.Updated_Quantity__c';
+import Confirmed_Quantity__c_FIELD from '@salesforce/schema/Parts_Inventory_Transaction__c.Confirmed_Quantity__c';
+import Transaction_Date__c_FIELD from '@salesforce/schema/Parts_Inventory_Transaction__c.Transaction_Date__c';
+import Description__c_FIELD from '@salesforce/schema/Parts_Inventory_Transaction__c.Description__c';
+import Status__c_FIELD from '@salesforce/schema/Parts_Inventory_Transaction__c.Status__c';
+import Parts_Inventory__c_FIELD from '@salesforce/schema/Parts_Inventory_Transaction__c.Parts_Inventory__c';
 
 
 export default class createRecordForm extends LightningElement {
     @api recordId;
-    @wire(getRecord, { recordId: "$recordId", fields: [Quantity__c_FIELD] })
     onChangeUpdatedQuantity;
     updatedQuantity;
     onChangeConfirmedQuantity;
@@ -50,14 +54,16 @@ export default class createRecordForm extends LightningElement {
     }
     
     handleClick(){
-        createTrans({
-            UQuantity: this.updatedQuantity,
-            CQuantity: this.confirmedQuantity,
-            TDate: this.transactionDate,
-            Status: this.status,
-            Description: this.description,
-            PInventory: this.recordId
-        }).then(result=>{
+        const recordInput = {
+                [Updated_Quantity__c_FIELD.fieldApiName] : this.updatedQuantity,
+                [Confirmed_Quantity__c_FIELD.fieldApiName] : this.confirmedQuantity,
+                [Transaction_Date__c_FIELD.fieldApiName] : this.transactionDate,
+                [Status__c_FIELD.fieldApiName] : this.status,
+                [Description__c_FIELD.fieldApiName] : this.description,
+                [Parts_Inventory__c_FIELD.fieldApiName] : this.recordId
+        };
+        createTrans({ trans : recordInput })
+        .then(result=>{
             this.dispatchEvent(new ShowToastEvent({
                 title: "Transaction created",
                 variant: "success"
@@ -73,7 +79,8 @@ export default class createRecordForm extends LightningElement {
             console.log(this.status);
         }).catch(error=>{
             this.dispatchEvent(new ShowToastEvent({
-                title: "Error",
+                title: 'Error',
+                message: error.body.message,
                 variant: "error"
             }));
             this.message = 'Error';
@@ -81,3 +88,5 @@ export default class createRecordForm extends LightningElement {
     }
 }
 
+// 클래스에서 변수 말고 object로 넣기.
+// error 는 object.
