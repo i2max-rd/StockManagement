@@ -54,8 +54,7 @@ global with sharing class CXP_GCS_DiagnosticTroubleInfo_API {
         for (Diagnostic_Trouble_Info__c d : diagnosticTroubleInfoMap.values()) {
             for(Asset a : assetList){
             if (a.VIN__c == d.VIN__c) {
-                d.Vehicle__c = a.Id;
-                
+                d.Vehicle__c = a.Id;        
             }
             System.debug(d.External_Key__c);
         }

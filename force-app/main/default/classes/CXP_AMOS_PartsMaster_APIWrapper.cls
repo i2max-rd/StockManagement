@@ -67,7 +67,10 @@ public with sharing class CXP_AMOS_PartsMaster_APIWrapper {
     }
 
     public static CXP_AMOS_PartsMaster_APIWrapper parse(String json) {
-        return (CXP_AMOS_PartsMaster_APIWrapper) System.JSON.deserializeStrict(json, CXP_AMOS_PartsMaster_APIWrapper.class);
+        return (CXP_AMOS_PartsMaster_APIWrapper) System.JSON.deserializeStrict(
+            json,
+            CXP_AMOS_PartsMaster_APIWrapper.class
+        );
     }
 
     public class Response {
@@ -82,7 +85,7 @@ public with sharing class CXP_AMOS_PartsMaster_APIWrapper {
         public responseBodyWrapper payload;
 
         public responseWrapper(String ifTrackingId) {
-            header = new ResponseHeaderWrapper('IF_EU_AMOS_CXP_0006', 'EU', 'AMOS', 'EU', 'CXP', ifTrackingId);
+            header = new ResponseHeaderWrapper('IF_EU_GCS_CXP_0002', 'EU', 'GCS', 'EU', 'CXP', ifTrackingId);
             payload = new ResponseBodyWrapper();
         }
     }
@@ -119,3 +122,4 @@ public with sharing class CXP_AMOS_PartsMaster_APIWrapper {
         public String ErrorCode;
     }
 }
+

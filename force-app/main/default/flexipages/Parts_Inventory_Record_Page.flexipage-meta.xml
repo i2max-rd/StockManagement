@@ -114,7 +114,7 @@
     <flexiPageRegions>
         <itemInstances>
             <componentInstance>
-                <componentName>partsInventoryAdjustment</componentName>
+                <componentName>partsInventoryAdjustment_cw</componentName>
             </componentInstance>
         </itemInstances>
         <mode>Replace</mode>

@@ -1,0 +1,39 @@
+<template>
+    <lightning-card title="Parts Inventory Adjustment" icon-name="action:log_event">
+      <div class="slds-m-around_medium">
+          <lightning-record-view-form record-id={recordId} object-api-name="Parts_Inventory__c">
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item size="6">
+                        <lightning-output-field field-name="Part_Name__c"></lightning-output-field>  
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <lightning-output-field field-name="Product_Code__c"></lightning-output-field>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <lightning-output-field field-name="Quantity__c"></lightning-output-field>
+                    </lightning-layout-item>
+                </lightning-layout>
+            </lightning-record-view-form>
+            <lightning-record-edit-form object-api-name="Parts_Inventory_Transaction__c">
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item size="3">
+                        <lightning-input name="Updated Quantity" label="Updated Quantity" type="number" class="updateCmp" value={updatedQtyVal} onchange={updatedQty}></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3">
+                        <lightning-input name="Confirmed Quantity" label="Confirmed Quantity" class="confirmCmp" value={confirmedQtyVal} onchange={confirmedQty}></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <lightning-input-field field-name="Status__c" value={transactionStatusVal} onchange={transactionStatus}></lightning-input-field>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <lightning-input-field field-name="Transaction_Date__c" value={transactionDateVal} onchange={transactionDate}></lightning-input-field>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="6">
+                        <lightning-input-field field-name="Description__c" value={descriptionVal} onchange={description}></lightning-input-field>
+                    </lightning-layout-item>
+                        <lightning-button variant="brand" id="submit" type="submit" label="Save" onclick={createTransaction}></lightning-button>
+                    </lightning-layout>
+              </lightning-record-edit-form>
+        </div>
+    </lightning-card>
+  </template>
