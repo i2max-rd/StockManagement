@@ -56,7 +56,6 @@ export default class PartsInventoryAdjustment_cw extends LightningElement {
     
     // validation function 
     confirmedValidation() { 
-        // let validated = true;
         let confirmCmp = this.template.querySelector(".confirmCmp");
         let confirmValue = confirmCmp.value;
         let updateCmp = this.template.querySelector(".updateCmp");
@@ -92,12 +91,6 @@ export default class PartsInventoryAdjustment_cw extends LightningElement {
                     updateCmp.reportValidity();
                 }
             }
-  
-        // if (!validated) { 
-        //     updateCmp.reportValidity();
-        //     confirmCmp.reportValidity();
-        //     return false;
-        //  }
 
          return true;
     }

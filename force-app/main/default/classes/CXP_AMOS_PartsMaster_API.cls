@@ -26,7 +26,7 @@ global with sharing class CXP_AMOS_PartsMaster_API {
         for (CXP_AMOS_PartsMaster_APIWrapper.T_DATA bodyItem : bodyWrapper.request.payload.T_DATA) {
             Product2 product = new Product2();
             if (String.isBlank(bodyItem.AMOSProductCode)) {
-                populateResponseErrorMessage(responseInstance, 'E', ' ', 'VIN value is empty');
+                populateResponseErrorMessage(responseInstance, 'E', ' ', 'Product Code is empty');
                 break;
             }
             product.Name = bodyItem.AMOSPartName;
