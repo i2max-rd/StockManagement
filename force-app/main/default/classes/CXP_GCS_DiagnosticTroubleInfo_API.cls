@@ -46,7 +46,7 @@ global with sharing class CXP_GCS_DiagnosticTroubleInfo_API {
             diagnosticTroubleInfoMap.put(diagnosticTroubleInfo.External_Key__c, diagnosticTroubleInfo);
             vinSet.add(diagnosticTroubleInfo.VIN__c);
         }
-        for(Diagnostic_Trouble_Info__c d2 : diagnosticTroubleInfoMap.values()){
+        for(Diagnostic_Trouble_Info__c d2 : diagnosticTroubleInfoMap.values()) {
             System.debug(d2);
         }
 

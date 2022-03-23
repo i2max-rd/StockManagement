@@ -58,6 +58,10 @@
                 <behavior>Edit</behavior>
                 <field>Parts_Shipment_Log__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>TransactionType__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns/>
         <style>TwoColumnsTopToBottom</style>

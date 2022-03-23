@@ -3,8 +3,10 @@
     <fullName>All_Products</fullName>
     <columns>PRODUCT2.NAME</columns>
     <columns>PRODUCT2.CUSTOMER_PRODUCT_ID</columns>
-    <columns>PRODUCT2.DESCRIPTION</columns>
-    <columns>PRODUCT2.FAMILY</columns>
+    <columns>AMOSCompanyKindCode__c</columns>
+    <columns>AMOSSAC__c</columns>
+    <columns>MSRP__c</columns>
+    <columns>NRRP__c</columns>
     <filterScope>Everything</filterScope>
     <label>All Products</label>
 </ListView>

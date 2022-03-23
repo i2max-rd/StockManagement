@@ -1,0 +1,17 @@
+<template>
+    <lightning-card title="Order Placement" icon-name="custom:custom93">
+        <div class="slds-m-around_medium">
+            <lightning-record-view-form object-api-name="Parts_Order__c">
+                <lightning-layout multiple-rows>
+                    <lightning-layout-item size="5">
+                        <lightning-input type="text" label="Enter Part Name" onchange={handlePartName} ></lightning-input>
+                    </lightning-layout-item>
+                </lightning-layout><br/>
+                <lightning-button label="Search" variant="brand" onclick={handleSearch}></lightning-button>
+            </lightning-record-view-form>
+            <div if:true={searchData}>
+                <lightning-datatable data={searchData} columns={columns} key-field="id" hide-checkbox-column="true"></lightning-datatable>
+            </div>
+        </div>
+    </lightning-card>
+</template>
