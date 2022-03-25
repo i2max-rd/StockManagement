@@ -11,24 +11,39 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
-                <fullName>Replenished</fullName>
+                <fullName>Loss</fullName>
                 <default>false</default>
-                <label>Replenished</label>
+                <label>Loss</label>
             </value>
             <value>
-                <fullName>Consumed</fullName>
+                <fullName>Wastage/Spillage</fullName>
                 <default>false</default>
-                <label>Consumed</label>
+                <label>Wastage/Spillage</label>
             </value>
             <value>
-                <fullName>Adjusted</fullName>
+                <fullName>Arrival of Claimed parts</fullName>
                 <default>false</default>
-                <label>Adjusted</label>
+                <label>Arrival of Claimed parts</label>
             </value>
             <value>
-                <fullName>Transferred</fullName>
+                <fullName>Parts return</fullName>
                 <default>false</default>
-                <label>Transferred</label>
+                <label>Parts return</label>
+            </value>
+            <value>
+                <fullName>Other surplus</fullName>
+                <default>false</default>
+                <label>Other surplus</label>
+            </value>
+            <value>
+                <fullName>Shipment Confirmed</fullName>
+                <default>false</default>
+                <label>Shipment Confirmed</label>
+            </value>
+            <value>
+                <fullName>Job Order Consumed</fullName>
+                <default>false</default>
+                <label>Job Order Consumed</label>
             </value>
         </valueSetDefinition>
     </valueSet>

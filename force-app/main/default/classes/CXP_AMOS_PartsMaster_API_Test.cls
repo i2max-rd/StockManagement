@@ -3,11 +3,11 @@
 public class CXP_AMOS_PartsMaster_API_Test {
     @TestSetup
     static void makeData(){
-        Department__c department = new Department__c(Name = 'Test Department', Department_Code__c = 'C19GA', RecordTypeId = '012N0000002n1YSIAY');
+        Id RecordTypeId = Schema.SObjectType.Department__c.getRecordTypeInfosByName().get('NSC Department').getRecordTypeId();
+        Department__c department = new Department__c(Name = 'Test Department', Department_Code__c = 'C19GA', RecordTypeId = RecordTypeId);
         insert department;
 
-        Product2 product = new Product2(Name = 'Test Product', AMOSProductCode__c = 'TEST100', AMOSCompanyKindCode__c = 'C19GA', AMOSSAC__c = '20d');
-        insert product;
+
     }
 
     @isTest
@@ -126,7 +126,7 @@ public class CXP_AMOS_PartsMaster_API_Test {
         jsonRequest += '            "T_DATA": [';
         jsonRequest += '                {';
         jsonRequest += '                    "AMOSCompanyKindCode": "C19GA",';
-        jsonRequest += '                    "AMOSProductCode": " ",';
+        jsonRequest += '                    "AMOSProductCode": "",';
         jsonRequest += '                    "AMOSPartNameNative": "SENSOR-OIL LEVEL",';
         jsonRequest += '                    "AMOSPartName": "SENSOR-OIL LEVEL",';
         jsonRequest += '                    "AMOSProductCodeNEW": " ",';

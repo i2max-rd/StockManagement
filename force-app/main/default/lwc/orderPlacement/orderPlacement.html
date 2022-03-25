@@ -1,0 +1,93 @@
+<template>
+    <div>
+        <lightning-card title="Order Placement" icon-name="standard:fulfillment_order">
+            <lightning-button label="Create Order" slot="actions"></lightning-button>  
+            <lightning-button label="Place Order" slot="actions"></lightning-button>  
+            <lightning-button label="Confirm Order" slot="actions"></lightning-button>  
+            <lightning-layout multiple-rows>
+                <lightning-layout-item size="2">
+                    <lightning-input variant="label-inline" type="text" onchange={handleKeyChange} label="GME Order No."></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="2">
+                    <lightning-input variant="label-inline" type="text"  label="AMOS Order No."></lightning-input>
+                </lightning-layout-item>
+                <lightning-layout-item size="4">
+                </lightning-layout-item>
+                <lightning-layout-item size="2">
+                   <lightning-button label="Search" variant="brand" onclick={handleSearch}></lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+                <lightning-card>
+
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <thead>
+                              <tr class="slds-line-height_reset">
+                                <th class="" scope="col">
+                                  <div class="slds-truncate" title="Parts Order ID">Parts Order ID</div>
+                                </th>
+                                <th class="" scope="col">
+                                  <div class="slds-truncate" title="Parts Order Name">Parts Order Name</div>
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                                <template if:true={partsOrderId}>
+                                      <tr class="slds-hint-parent" >
+                                          <td>{partsOrderId}</td>
+                                          <td>{partsOrderNumber}</td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                          </table>
+
+                </lightning-card>
+
+                        <!-- <table>
+                            <tr>
+                                <td>Parts Order ID</td>
+                                <td>Parts Order Name</td>
+                            </tr>
+                            <tr>
+                                <td>{partsOrderId}</td>
+                                <td>{partsOrderNumber}</td>
+                            </tr>
+                        </table>
+                    </template>
+                </lightning-card> -->
+
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                    <thead>
+                      <tr class="slds-line-height_reset">
+                        <th class="" scope="col">
+                          <div class="slds-truncate" title="Parts Order Line Item Name">Parts Order Line Item Name</div>
+                        </th>
+                        <th class="" scope="col">
+                          <div class="slds-truncate" title="Quantity Requested">Quantity Requested</div>
+                        </th>
+                        <th class="" scope="col">
+                          <div class="slds-truncate" title="AMOSProductCode">AMOSProductCode</div>
+                        </th>
+                        <th class="" scope="col">
+                          <div class="slds-truncate" title="AMOSSAC">AMOSSAC</div>
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={lineItemArr2} for:item="lineItem">
+                              <tr class="slds-hint-parent" key={lineItem.Id}>
+                                  <td>{lineItem.Name}</td>
+                                  <td>{lineItem.Quantity_Requested__c}</td>
+                                  <td>{lineItem.Ordered_Product__r.AMOSProductCode__c}</td>
+                                  <td>{lineItem.Ordered_Product__r.AMOSSAC__c}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                  </table>
+
+
+
+
+
+        </lightning-card>
+    </div>
+</template>

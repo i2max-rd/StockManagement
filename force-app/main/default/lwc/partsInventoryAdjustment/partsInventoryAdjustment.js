@@ -13,15 +13,12 @@ import Parts_Inventory__c_FIELD from '@salesforce/schema/Parts_Inventory_Transac
 
 export default class createRecordForm extends LightningElement {
     @api recordId;
-    onChangeUpdatedQuantity;
     updatedQuantity;
-    onChangeConfirmedQuantity;
     confirmedQuantity;
     transactionDate;
     status;
     description;
     currentQuantity;
-    selectedValue;
 
     @wire(getRecord, { recordId: "$recordId", fields: [Quantity__c_FIELD] })
     wireInventory({ error, data }) {
@@ -29,18 +26,16 @@ export default class createRecordForm extends LightningElement {
             this.error = error;
         } else if (data) {
             this.currentQuantity = data.fields.Quantity__c.value;
-            this.onChangeConfirmedQuantity = data.fields.Quantity__c.value;
+            this.confirmedQuantity = data.fields.Quantity__c.value;
         }
     }
 
     updatedQuantityHandler(event){
         this.updatedQuantity = event.target.value;
-        this.onChangeConfirmedQuantity = parseFloat(this.currentQuantity) + parseFloat(this.updatedQuantity);
         this.confirmedQuantity = parseFloat(this.currentQuantity) + parseFloat(this.updatedQuantity);
     }
     confirmedQuantityHandler(event){
         this.confirmedQuantity = event.target.value;
-        this.onChangeUpdatedQuantity = parseFloat(this.confirmedQuantity) - parseFloat(this.currentQuantity);
         this.updatedQuantity = parseFloat(this.confirmedQuantity) - parseFloat(this.currentQuantity);
     }
     transactionDateHandler(event){
@@ -53,15 +48,62 @@ export default class createRecordForm extends LightningElement {
         this.description = event.target.value;
     }
     
+
+
+    validation(){
+     let inputConfirmedQty = this.template.querySelector('.confirmedQtyId');
+     let inputConfirmedQtyValue = inputConfirmedQty.value;
+     let inputUpdatedQty = this.template.querySelector('.updatedQtyId');
+     let inputUpdatedQtyValue = inputUpdatedQty.value;
+
+        if(inputConfirmedQtyValue < 0){
+            inputConfirmedQty.setCustomValidity('Confirmed Quantity must be Positive.'); 
+            inputConfirmedQty.reportValidity();
+            return false;
+        }else{
+            inputConfirmedQty.setCustomValidity(''); 
+            inputConfirmedQty.reportValidity();
+        }
+
+        if(this.status == 'Loss' || this.status == 'Wastage/Spillage'){
+            if(inputUpdatedQtyValue > 0){
+                inputUpdatedQty.setCustomValidity('Please check the value.');
+                inputUpdatedQty.reportValidity();
+                return false;
+            }else{
+                inputUpdatedQty.setCustomValidity(''); 
+                inputUpdatedQty.reportValidity();
+            }
+        }
+
+        if(this.status == 'Arrival of Claimed parts' || this.status == 'Parts return' || this.status == 'Other surplus'){
+            if(inputUpdatedQtyValue < 0){
+                inputUpdatedQty.setCustomValidity('Please check the value.'); 
+                inputUpdatedQty.reportValidity();
+                return false;
+            }else{
+                inputUpdatedQty.setCustomValidity(''); 
+                inputUpdatedQty.reportValidity();
+            }
+        }
+        
+    return true;
+ }
+
     handleClick(){
-        const recordInput = {
-                [Updated_Quantity__c_FIELD.fieldApiName] : this.updatedQuantity,
-                [Confirmed_Quantity__c_FIELD.fieldApiName] : this.confirmedQuantity,
-                [Transaction_Date__c_FIELD.fieldApiName] : this.transactionDate,
-                [Status__c_FIELD.fieldApiName] : this.status,
-                [Description__c_FIELD.fieldApiName] : this.description,
-                [Parts_Inventory__c_FIELD.fieldApiName] : this.recordId
-        };
+         if(!this.validation()){
+             return;               // 오류 발생 했을 때 실행됨.
+          }
+
+         const recordInput = {
+             [Updated_Quantity__c_FIELD.fieldApiName] : this.updatedQuantity,
+             [Confirmed_Quantity__c_FIELD.fieldApiName] : this.confirmedQuantity,
+             [Transaction_Date__c_FIELD.fieldApiName] : this.transactionDate,
+             [Status__c_FIELD.fieldApiName] : this.status,
+             [Description__c_FIELD.fieldApiName] : this.description,
+             [Parts_Inventory__c_FIELD.fieldApiName] : this.recordId
+            };
+        
         createTrans({ trans : recordInput })
         .then(result=>{
             this.dispatchEvent(new ShowToastEvent({
@@ -69,24 +111,18 @@ export default class createRecordForm extends LightningElement {
                 variant: "success"
             }));
             updateRecord({ fields: { Id: this.recordId } });
-            this.onChangeUpdatedQuantity = null;
             this.updatedQuantity = null;
             this.transactionDate = null;
             this.status = null;
             this.description = null;
-            this.message = 'Transaction Created';
-            console.log(this.updatedQuantity);
-            console.log(this.status);
         }).catch(error=>{
             this.dispatchEvent(new ShowToastEvent({
                 title: 'Error',
                 message: error.body.message,
                 variant: "error"
             }));
-            this.message = 'Error';
         });
     }
 }
 
-// 클래스에서 변수 말고 object로 넣기.
 // error 는 object.
