@@ -21,14 +21,14 @@
         <apexClass>CXP_GCS_DiagnosticTroubleInfo_APIWrapper</apexClass>
         <enabled>true</enabled>
     </classAccesses>
-    <classAccesses>
+    <!-- <classAccesses>
         <apexClass>InventoryController</apexClass>
         <enabled>true</enabled>
-    </classAccesses>
-    <classAccesses>
+    </classAccesses> -->
+    <!-- <classAccesses>
         <apexClass>TransactionController</apexClass>
         <enabled>true</enabled>
-    </classAccesses>
+    </classAccesses> -->
     <custom>false</custom>
     <fieldPermissions>
         <editable>true</editable>

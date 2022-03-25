@@ -1,45 +1,63 @@
-import { LightningElement, wire, track, api } from 'lwc';
+import { LightningElement, track, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import findParts from '@salesforce/apex/searchOrderedParts.findParts';
+import findPartLineItem from '@salesforce/apex/searchOrderedParts.findPartLineItem';
 import getPartsOrderLineItem from '@salesforce/apex/searchOrderedParts.getPartsOrderLineItem';
-
 
 const columns = [
     { 
-        label: 'Name',
-        fieldName: 'Name'
-    }, { 
-        label: 'Parts No',
+        label: "Parts No",
         fieldName: 'Parts_Order_Number__c'
+    },
+    { 
+        label: "Name",
+        fieldName: 'Name'
+    },{ 
+        label: "Id",
+        fieldName: 'Id'
+    }
+];
+const COLS = [
+    { 
+        label: "Name",
+        fieldName: 'Name'
     }, { 
         label: "Id",
         fieldName: 'Id'
+    }, { 
+        label: "Part Code",
+        fieldName: 'Parts_Order_Line_Item_Number__c'
+    }, { 
+        label: "AMOS Product Code",
+        fieldName: 'Ordered_Product__c'
     }
 ];
 
 export default class orderPlacement extends LightningElement { 
 
-    @track searchKey = '';
+    searchKey = '';
     searchData;
     columns = columns;
+    COLS = COLS;
     errorMsg = '';
+    selectedRows = [];
+    partsOrderId = '';
+    lineItems;
+    check = false;
 
-    handleKeyChange(event) { 
-        const searchKey = event.target.value;
-        this.searchKey = searchKey;
-        this.handleSearch();
+
+    handlePartName(event) { 
+       this.errorMsg = '';
+       const searchKey = event.target.value;
+       this.searchKey = searchKey;
     }
 
     handleSearch() { 
-        if(!this.searchKey) { 
-            this.errorMsg = 'Please enter part name to search.';
-            this.searchData = undefined;
-            return;
-        }
-
-        findParts({searchKey : this.searchKey})
+        
+        findPartLineItem({searchKey : this.searchKey})
             .then(result => { 
                 this.searchData = result;
+                // console.log(this.searchData);
+                // console.log(this.searchKey);
             })
             .catch(error => {
                 this.dispatchEvent(
@@ -50,7 +68,31 @@ export default class orderPlacement extends LightningElement {
                     }),
                 );
             });
+    }
 
-        
+    getSelectedName(event) { 
+        const selectedRows = event.detail.selectedRows;
+        // console.log(JSON.stringify(selectedRows));
+        var setRows = [];
+        setRows.push(selectedRows[0]);
+        var idValue = setRows[0].Id;
+    
+        this.check = true;
+      
+        getPartsOrderLineItem({partsOrderId: idValue})
+            .then(result => { 
+                // console.log(result);
+                this.lineItems = result;
+                // console.log(this.lineItems);
+            })
+            .catch(error => {
+                this.dispatchEvent(
+                    new ShowToastEvent({
+                        title: 'Error creating record',
+                        message: error.body.message,
+                        variant: 'error',
+                    }),
+                    );
+                });
     }
 }
