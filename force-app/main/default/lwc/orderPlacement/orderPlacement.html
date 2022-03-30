@@ -8,6 +8,7 @@
                     </lightning-layout-item>
                 </lightning-layout><br/>
                 <lightning-button label="Search" variant="brand" onclick={handleSearch}></lightning-button>
+                <lightning-button label="Request Order" variant="brand" onclick={handleRequestOrder}></lightning-button>
             </lightning-record-view-form>
             <template if:true={searchData}>
                 <lightning-datatable data={searchData} selected-rows={selection} onrowselection={getSelectedName} columns={columns} key-field="Id"></lightning-datatable>

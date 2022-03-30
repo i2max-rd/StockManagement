@@ -154,6 +154,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <label>Department</label>
+    <pluralLabel>Departments</pluralLabel>
     <nameField>
         <label>Department Name</label>
         <type>Text</type>

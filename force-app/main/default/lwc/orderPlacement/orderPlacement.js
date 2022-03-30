@@ -2,6 +2,7 @@ import { LightningElement, track, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import findPartLineItem from '@salesforce/apex/searchOrderedParts.findPartLineItem';
 import getPartsOrderLineItem from '@salesforce/apex/searchOrderedParts.getPartsOrderLineItem';
+import getProductRequestForAMOSCallout from '@salesforce/apex/SendPartOrderToAMOS.getProductRequestForAMOSCallout'
 
 const columns = [
     { 
@@ -75,11 +76,11 @@ export default class orderPlacement extends LightningElement {
         // console.log(JSON.stringify(selectedRows));
         var setRows = [];
         setRows.push(selectedRows[0]);
-        var idValue = setRows[0].Id;
+        this.idValue = setRows[0].Id;
     
         this.check = true;
       
-        getPartsOrderLineItem({partsOrderId: idValue})
+        getPartsOrderLineItem({partsOrderId: this.idValue})
             .then(result => { 
                 // console.log(result);
                 this.lineItems = result;
@@ -94,5 +95,14 @@ export default class orderPlacement extends LightningElement {
                     }),
                     );
                 });
+    }
+
+    handleRequestOrder() { 
+        
+        console.log(this.idValue);
+        getProductRequestForAMOSCallout({productRequestId: this.idValue})
+            .then(result => { 
+                console.log(result);
+            })
     }
 }
