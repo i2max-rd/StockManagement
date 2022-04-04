@@ -154,11 +154,12 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Parts Inventory Transaction</label>
+    <pluralLabel>Parts Inventory Transactions</pluralLabel>
     <nameField>
         <label>Parts Inventory Name</label>
         <type>Text</type>
     </nameField>
     <searchLayouts/>
-    <sharingModel>ControlledByParent</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel> 
     <visibility>Public</visibility>
 </CustomObject>

@@ -154,6 +154,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <label>Parts Market Factor</label>
+    <pluralLabel>Parts Market Factors</pluralLabel>
     <nameField>
         <displayFormat>PMF-{00000}</displayFormat>
         <label>Parts Market Factor Name</label>

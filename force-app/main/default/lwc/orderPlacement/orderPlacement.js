@@ -1,50 +1,34 @@
-import { LightningElement, track, wire } from 'lwc';
+import { LightningElement, track, wire, api } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 import findPartLineItem from '@salesforce/apex/searchOrderedParts.findPartLineItem';
 import getPartsOrderLineItem from '@salesforce/apex/searchOrderedParts.getPartsOrderLineItem';
-import getProductRequestForAMOSCallout from '@salesforce/apex/SendPartOrderToAMOS.getProductRequestForAMOSCallout'
+import generateBody from '@salesforce/apex/SendPartOrderToAMOS.generateBody';
 
-const columns = [
-    { 
-        label: "Parts No",
-        fieldName: 'Parts_Order_Number__c'
-    },
-    { 
-        label: "Name",
-        fieldName: 'Name'
-    },{ 
-        label: "Id",
-        fieldName: 'Id'
-    }
-];
-const COLS = [
-    { 
-        label: "Name",
-        fieldName: 'Name'
-    }, { 
-        label: "Id",
-        fieldName: 'Id'
-    }, { 
-        label: "Part Code",
-        fieldName: 'Parts_Order_Line_Item_Number__c'
-    }, { 
-        label: "AMOS Product Code",
-        fieldName: 'Ordered_Product__c'
-    }
-];
-
+// const columns = [
+//     { 
+//         label: "Parts No",
+//         fieldName: 'Parts_Order_Number__c'
+//     },
+//     { 
+//         label: "Name",
+//         fieldName: 'Name'
+//     },{ 
+//         label: "Id",
+//         fieldName: 'Id'
+//     }
+// ];
 export default class orderPlacement extends LightningElement { 
 
     searchKey = '';
     searchData;
-    columns = columns;
-    COLS = COLS;
+    // columns = columns;
     errorMsg = '';
     selectedRows = [];
-    partsOrderId = '';
     lineItems;
-    check = false;
+    idValue;
+    // check = false;
 
+    selectedRecordId; 
 
     handlePartName(event) { 
        this.errorMsg = '';
@@ -53,12 +37,32 @@ export default class orderPlacement extends LightningElement {
     }
 
     handleSearch() { 
-        
+
         findPartLineItem({searchKey : this.searchKey})
             .then(result => { 
+
                 this.searchData = result;
-                // console.log(this.searchData);
-                // console.log(this.searchKey);
+                
+                this.idValue = result[0].Id;
+                
+                console.log(result[0].Id);
+                console.log(this.searchData);
+                // this.check = true;
+                getPartsOrderLineItem({partsOrderId: this.idValue})
+                    .then(result => { 
+                            this.lineItems = result;
+                            console.log(this.lineItems);
+                        })
+                        .catch(error => {
+                            this.dispatchEvent(
+                                new ShowToastEvent({
+                                    title: 'Error creating record',
+                                    message: error.body.message,
+                                    variant: 'error',
+                                }),
+                                );
+                            });
+                    
             })
             .catch(error => {
                 this.dispatchEvent(
@@ -69,38 +73,14 @@ export default class orderPlacement extends LightningElement {
                     }),
                 );
             });
+
     }
 
-    getSelectedName(event) { 
-        const selectedRows = event.detail.selectedRows;
-        // console.log(JSON.stringify(selectedRows));
-        var setRows = [];
-        setRows.push(selectedRows[0]);
-        this.idValue = setRows[0].Id;
-    
-        this.check = true;
-      
-        getPartsOrderLineItem({partsOrderId: this.idValue})
-            .then(result => { 
-                // console.log(result);
-                this.lineItems = result;
-                // console.log(this.lineItems);
-            })
-            .catch(error => {
-                this.dispatchEvent(
-                    new ShowToastEvent({
-                        title: 'Error creating record',
-                        message: error.body.message,
-                        variant: 'error',
-                    }),
-                    );
-                });
-    }
 
     handleRequestOrder() { 
         
         console.log(this.idValue);
-        getProductRequestForAMOSCallout({productRequestId: this.idValue})
+        generateBody ({productRequestId: this.idValue})
             .then(result => { 
                 console.log(result);
             })

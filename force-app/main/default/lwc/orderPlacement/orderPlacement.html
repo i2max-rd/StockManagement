@@ -1,57 +1,69 @@
 <template>
     <lightning-card title="Order Placement" icon-name="custom:custom93">
-        <div class="slds-m-around_medium">
+        <div class="slds-m-bottom_medium">
             <lightning-record-view-form object-api-name="Parts_Order__c">
-                <lightning-layout multiple-rows>
-                    <lightning-layout-item size="5">
-                        <lightning-input type="text" label="GME Order No." onchange={handlePartName} ></lightning-input>
+                <lightning-layout>
+                    <lightning-layout-item size="3">
+                        <lightning-input variant="label-inline" label="GME Order No." type="text" onchange={handlePartName}></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3">
+                        <lightning-input variant="label-inline" label="AMOS Order No." type="text"></lightning-input>
+                    </lightning-layout-item>
+                    <lightning-layout-item alignment-bump="left">
+                        <lightning-button-icon icon-name="utility:refresh" class="slds-m-right_x-small"></lightning-button-icon>
+                        <lightning-button label="Request Order" onclick={handleRequestOrder} class="slds-m-right_x-small"></lightning-button>
+                        <lightning-button label="Search" variant="brand" onclick={handleSearch} icon-position="right" class="slds-m-right_x-small"></lightning-button>
                     </lightning-layout-item>
                 </lightning-layout><br/>
-                <lightning-button label="Search" variant="brand" onclick={handleSearch}></lightning-button>
-                <lightning-button label="Request Order" variant="brand" onclick={handleRequestOrder}></lightning-button>
-            </lightning-record-view-form>
-            <template if:true={searchData}>
-                <lightning-datatable data={searchData} selected-rows={selection} onrowselection={getSelectedName} columns={columns} key-field="Id"></lightning-datatable>
-                <!-- <div class="slds-box slds-theme_default">
-                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
-                        <thead>
-                            <tr>
-                                <th class="" scope="col">
-                                    <div class="slds-truncate" title="Order Info">Order Info</div>
-                                </th>
-                                <th class="" scope="col">
-                                    <div class="slds-truncate" title="Distribute Code">Distribute Code</div>
-                                </th>
-                                <th class="" scope="col">
-                                    <div class="slds-truncate" title="Order Date">Order Date</div>
-                                </th>
-                                <th class="" scope="col">
-                                    <div class="slds-truncate" title="Description">Description</div>
-                                </th>
-                                <th class="" scope="col">
-                                    <div class="slds-truncate" title="Quantity Requested">Quantity Requested</div>
-                                </th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <template iterator:it={searchData} onrowselection={getSelectionName} columns={columns} key-field="Id">
-                                <tr key={it.value.Id}>
-                                    <td>{it.value.Parts_Order_Number__c}</td>
-                                    <td>{it.value.Order_Date__c}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                            </template>
-                        </tbody>
-                    </table>
-                </div>  -->
-            </template>
-        <template if:true={check}>
-            <div class="slds-box slds-theme_default">
+                </lightning-record-view-form>
                 <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
                     <thead>
                         <tr>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Order Info">Order Info</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Distribute Code">Distribute Code</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Order Date">Order Date</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Description">Description</div>
+                            </th>
+                            <th class="" scope="col">
+                                <div class="slds-truncate" title="Order Type">Order Type</div>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template iterator:it={searchData}>
+                            <tr key={it.value.Id}>
+                                <td>{it.value.Parts_Order_Number__c}</td>
+                                <td>{it.value.DepartmentCode__c}</td>
+                                <td>{it.value.Order_Date__c}</td>
+                                <td>{it.value.Description__c}</td>
+                                <td>{it.value.Order_Type__c}</td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+                <div class="slds-tabs_default">
+                    <ul class="slds-tabs_default__nav" role="tablist">
+                        <li class="slds-tabs_default__item slds-is-active" title="Parts Order" role="presentation">
+                        </li>
+                    </ul> 
+                    <ul class="slds-tabs_default__nav" role="tablist">
+                        <li class="slds-tabs_default__item" title="Parts Shipping" role="presentation">
+                        </li>
+                    </ul> 
+                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
+                    <thead>
+                        <tr>
+                            <th class="" scope="col">
+                                <input type="checkbox" title="chceckbox">
+                            </th>
                             <th class="" scope="col">
                                 <div class="slds-truncate" title="No">No</div>
                             </th>
@@ -72,6 +84,7 @@
                     <tbody>
                         <template iterator:it={lineItems}>
                             <tr key={it.value.Id}>
+                                <td><input type="checkbox"></td>
                                 <td>{it.value.Parts_Order_Line_Item_Number__c}</td>
                                 <td>{it.value.Name}</td>
                                 <td>{it.value.Parts_Order__r.Parts_Order_Number__c}</td>
@@ -82,8 +95,7 @@
                     </tbody>
                 </table>
             </div>   
-        </template>
-                <!-- <lightning-datatable  key-field="Id" data={lineItems} columns={COLS}></lightning-datatable> -->
-            </div>
-    </lightning-card>
+    
+        <!-- </template> -->
+        </lightning-card>
 </template>

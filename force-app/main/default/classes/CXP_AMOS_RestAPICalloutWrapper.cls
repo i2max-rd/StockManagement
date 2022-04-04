@@ -17,7 +17,7 @@ public with sharing class CXP_AMOS_RestAPICalloutWrapper {
         public String ifReceiverGrp;
         public String ifReceiver;
         public String ifDateTime = System.now().format('yyyyMMddkkmmss');
-        public String ifTrackingId;
+        public String ifTrackingId = System.now().format('yyyyMMddkkmmss');
 
         public Header(String ifId,  String ifSenderGrp, String ifSender, String ifReceiverGrp, String ifReceiver) {
 			this.ifId = ifId;

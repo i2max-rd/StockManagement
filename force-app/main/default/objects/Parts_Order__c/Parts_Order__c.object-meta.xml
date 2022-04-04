@@ -154,6 +154,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <label>Parts Order</label>
+    <pluralLabel>Parts Orders</pluralLabel>
     <nameField>
         <label>Parts Order Name</label>
         <type>Text</type>

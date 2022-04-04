@@ -154,6 +154,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Parts Shipment Log</label>
+    <pluralLabel>Parts Shipment Logs</pluralLabel>
     <nameField>
         <label>Parts Shipment Log Name</label>
         <type>Text</type>

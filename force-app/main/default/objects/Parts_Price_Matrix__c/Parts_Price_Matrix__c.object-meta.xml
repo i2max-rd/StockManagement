@@ -154,6 +154,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <label>Parts Price Matrix</label>
+    <pluralLabel>Parts Price Matrixs</pluralLabel>
     <nameField>
         <displayFormat>PPM-{00000}</displayFormat>
         <label>Parts Price Matrix Name</label>

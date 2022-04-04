@@ -154,6 +154,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ControlledByParent</externalSharingModel>
     <label>Parts Order Line Item</label>
+    <pluralLabel>Parts Order Line Items</pluralLabel>
     <nameField>
         <label>Parts Order Line Item Name</label>
         <type>Text</type>

@@ -154,6 +154,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <label>LTM</label>
+    <pluralLabel>LTMs</pluralLabel>
     <nameField>
         <label>LTM Name</label>
         <type>Text</type>

@@ -154,6 +154,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <label>Diagnostic Trouble Info</label>
+    <pluralLabel>Diagnostic Trouble Infos</pluralLabel>
     <nameField>
         <label>Diagnostic Trouble Info Name</label>
         <type>Text</type>

@@ -154,6 +154,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <label>LTM VIN Patterns</label>
+    <pluralLabel>LTM VIN Patterns</pluralLabel>
     <nameField>
         <label>LTM VIN Patterns Name</label>
         <type>Text</type>

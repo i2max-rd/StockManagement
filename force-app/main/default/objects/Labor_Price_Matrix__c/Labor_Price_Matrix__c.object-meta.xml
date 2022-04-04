@@ -154,6 +154,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Private</externalSharingModel>
     <label>Labor Price Matrix</label>
+    <pluralLabel>Labor Price Matrixs</pluralLabel>
     <nameField>
         <displayFormat>LPM-{000000}</displayFormat>
         <label>Labor Price Matrix Name</label>
