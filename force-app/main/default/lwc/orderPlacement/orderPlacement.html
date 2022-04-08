@@ -1,93 +1,111 @@
 <template>
-    <div>
-        <lightning-card title="Order Placement" icon-name="standard:fulfillment_order">
-            <lightning-button label="Create Order" slot="actions"></lightning-button>  
-            <lightning-button label="Place Order" slot="actions"></lightning-button>  
-            <lightning-button label="Confirm Order" slot="actions"></lightning-button>  
-            <lightning-layout multiple-rows>
-                <lightning-layout-item size="2">
-                    <lightning-input variant="label-inline" type="text" onchange={handleKeyChange} label="GME Order No."></lightning-input>
-                </lightning-layout-item>
-                <lightning-layout-item size="2">
-                    <lightning-input variant="label-inline" type="text"  label="AMOS Order No."></lightning-input>
-                </lightning-layout-item>
-                <lightning-layout-item size="4">
-                </lightning-layout-item>
-                <lightning-layout-item size="2">
-                   <lightning-button label="Search" variant="brand" onclick={handleSearch}></lightning-button>
-                </lightning-layout-item>
-            </lightning-layout>
-                <lightning-card>
-
-                        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
-                            <thead>
-                              <tr class="slds-line-height_reset">
-                                <th class="" scope="col">
-                                  <div class="slds-truncate" title="Parts Order ID">Parts Order ID</div>
-                                </th>
-                                <th class="" scope="col">
-                                  <div class="slds-truncate" title="Parts Order Name">Parts Order Name</div>
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                <template if:true={partsOrderId}>
-                                      <tr class="slds-hint-parent" >
-                                          <td>{partsOrderId}</td>
-                                          <td>{partsOrderNumber}</td>
-                                    </tr>
-                                </template>
-                            </tbody>
-                          </table>
-
-                </lightning-card>
-
-                        <!-- <table>
-                            <tr>
-                                <td>Parts Order ID</td>
-                                <td>Parts Order Name</td>
-                            </tr>
-                            <tr>
-                                <td>{partsOrderId}</td>
-                                <td>{partsOrderNumber}</td>
-                            </tr>
-                        </table>
-                    </template>
-                </lightning-card> -->
-
-                <table class="slds-table slds-table_cell-buffer slds-table_bordered">
-                    <thead>
-                      <tr class="slds-line-height_reset">
-                        <th class="" scope="col">
-                          <div class="slds-truncate" title="Parts Order Line Item Name">Parts Order Line Item Name</div>
-                        </th>
-                        <th class="" scope="col">
-                          <div class="slds-truncate" title="Quantity Requested">Quantity Requested</div>
-                        </th>
-                        <th class="" scope="col">
-                          <div class="slds-truncate" title="AMOSProductCode">AMOSProductCode</div>
-                        </th>
-                        <th class="" scope="col">
-                          <div class="slds-truncate" title="AMOSSAC">AMOSSAC</div>
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        <template for:each={lineItemArr2} for:item="lineItem">
-                              <tr class="slds-hint-parent" key={lineItem.Id}>
-                                  <td>{lineItem.Name}</td>
-                                  <td>{lineItem.Quantity_Requested__c}</td>
-                                  <td>{lineItem.Ordered_Product__r.AMOSProductCode__c}</td>
-                                  <td>{lineItem.Ordered_Product__r.AMOSSAC__c}</td>
-                            </tr>
-                        </template>
-                    </tbody>
-                  </table>
-
-
-
-
-
-        </lightning-card>
-    </div>
+  <div>
+    <article class="slds-card">
+      <div class="slds-page-header">
+        <div class="slds-page-header__row">
+          <div class="slds-page-header__col-title">
+            <div class="slds-media">
+                <div class="slds-media__figure slds-align_absolute-center">
+                  <lightning-icon icon-name="standard:fulfillment_order"></lightning-icon>
+                </div>
+              <div class="slds-media__body">
+                  <div class="slds-page-header__name">
+                    <div class="slds-page-header__name-title">
+                      <h1>
+                        <span>Parts Order</span>
+                        <span class="slds-page-header__title slds-truncate" title="Order Placement">Order Placement</span>
+                      </h1>
+                    </div>
+                  </div>
+              </div>
+            </div>
+          </div>  
+            <div class="slds-page-header__col-actions">
+              <div class="slds-page-header__controls">
+                <div class="slds-page-header__control ">
+                  <lightning-button label="Create Order" slot="actions"></lightning-button>&nbsp;
+                  <lightning-button label="Place Order" variant="brand" slot="actions" onclick={sendPartOrder}></lightning-button>&nbsp;
+                  <lightning-button label="Confirm Order " slot="actions"></lightning-button>  
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </article>
+      <article class="slds-card slds-p-top_medium" >
+        <div class="slds-grid slds-wrap slds-p-left_small slds-p-right_small">
+          <div class="slds-col slds-size_1-of-12 slds-p-right_small">
+            <span><lightning-input type="text" label="GME Order No." onchange={handleKeyChange}></lightning-input></span>
+          </div>
+          <div class="slds-col slds-size_1-of-12 slds-p-right_small">
+            <span><lightning-input type="text" label="AMOS Order No."></lightning-input></span>
+          </div>
+          <div class="slds-col slds-size_8-of-12 slds-p-right_small">
+          </div>
+          <div class="slds-col slds-size_2-of-12 slds-p-top_large">
+            <span class="slds-float_right"><lightning-button label="Save" variant="brand"></lightning-button></span>
+            <span class="slds-float_right"><lightning-button label="Search" class="slds-p-right_xx-small" onclick={handleSearch}></lightning-button></span>
+            <span class="slds-float_right"><lightning-button-icon icon-name="utility:refresh" class="slds-p-right_xx-small"></lightning-button-icon></span>
+          </div>
+        </div>        
+          <table style="table-layout: fixed" class="slds-table slds-table_cell-buffer slds-table_bordered slds-p-top_small">
+            <thead>
+              <tr>
+                <th colspan="1" scope="row" rowspan="1">Order Info</th>
+                <td colspan="1" scope="row" rowspan="1">{partsOrderNumber}</td>
+                <th colspan="1" scope="row" rowspan="1">Distribute Code</th>
+                <td colspan="1" scope="row" rowspan="1">{distributeCode}</td>
+                <th colspan="1" scope="row" rowspan="1">Order Date</th>
+                <td colspan="1" scope="row" rowspan="1"></td>
+                <th colspan="1" scope="row" rowspan="2">Description</th>
+                <td colspan="3" scope="row" rowspan="2">{description}</td>
+              </tr>
+              <tr>
+                <th colspan="1" scope="row" rowspan="1">Order Type</th>
+                <td colspan="1" scope="row" rowspan="1">{orderType}</td>
+                <th colspan="1" scope="row" rowspan="1">Dealer Code</th>
+                <td colspan="1" scope="row" rowspan="1">{dealerCode}</td>
+                <th colspan="1" scope="row" rowspan="1">Shipping Address</th>
+                <td colspan="1" scope="row" rowspan="1"></td>
+              </tr>
+            </thead>
+          </table>
+          <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-p-top_small">
+            <thead>
+              <tr class="slds-line-height_reset">
+                <th class="" scope="col">
+                  <div class="slds-truncate" title="Parts Order Line Item Name">No</div>
+                </th>
+                <th class="" scope="col">
+                  <div class="slds-truncate" title="Parts Order Line Item Name">Part Name</div>
+                </th>
+                <th class="" scope="col">
+                  <div class="slds-truncate" title="AMOSProductCode">Part Code</div>
+                </th>
+                <th class="" scope="col">
+                  <div class="slds-truncate" title="AMOSSAC">SAC</div>
+                </th>
+                <th class="" scope="col">
+                  <div class="slds-truncate" title="Quantity Requested">Quantity Requested</div>
+                </th>
+                <th class="" scope="col">
+                  <div class="slds-truncate" title="Quantity Requested">Quantity Confirmed</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+                <template for:each={lineItemArr2} for:item="lineItem">
+                      <tr class="slds-hint-parent" key={lineItem.Id}>
+                          <td>{lineItem.Parts_Order_Line_Item_Number__c}</td>
+                          <td>{lineItem.Name}</td>
+                          <td>{lineItem.OrderedProduct__r.AMOSProductCode__c}</td>
+                          <td>{lineItem.OrderedProduct__r.AMOSSAC__c}</td>
+                          <td>{lineItem.QuantityRequested__c}</td>
+                          <td>{lineItem.OrderedProduct__r.Confirmed_Quantity__c}</td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+      </article>
+  </div>
 </template>

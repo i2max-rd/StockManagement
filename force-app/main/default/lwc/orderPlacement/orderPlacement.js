@@ -1,24 +1,17 @@
 import { LightningElement, wire } from 'lwc';
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
-import serachPartsOrder from '@salesforce/apex/PartsOrderController.serachPartsOrder';
-import Id_FIELD from '@salesforce/schema/Parts_Order_Line_Item__c.Id';
-import Name_FIELD from '@salesforce/schema/Parts_Order_Line_Item__c.Name';
-import Quantity_Requested__c_FIELD from '@salesforce/schema/Parts_Order_Line_Item__c.Quantity_Requested__c';
-import Ordered_Product_AMOSProductCode__c_FIELD from '@salesforce/schema/Parts_Order_Line_Item__c.Ordered_Product__r.AMOSProductCode__c';
+import searchPartsOrder from '@salesforce/apex/PartsOrderController.searchPartsOrder';
+import generateBody from '@salesforce/apex/SendPartOrderToAMOS.generateBody';
 
-
-const COLUMNS = [
-    { label: 'Id', fieldName: 'Id' },
-    { label: 'Name', fieldName: 'Name' },
-    { label: 'Quantity Requested', fieldName: 'Quantity_Requested__c'},
-    { label: 'AMOSProductCode', fieldName: 'Ordered_Product__r.AMOSProductCode__c'}
-    
-];
 
 export default class orderPlacement extends LightningElement {
 partsOrderId;
 partsOrderNumber;
-columns = COLUMNS;
+distributeCode;
+dealerCode;
+orderType;
+description;
+
 lineItemArr2;
 strSearchPartsOrder = '';
 
@@ -26,23 +19,26 @@ handleKeyChange(event) {
     this.strSearchPartsOrder = event.target.value;
 }
 
+
 handleSearch() {
-    serachPartsOrder({searchKey : this.strSearchPartsOrder})
+    searchPartsOrder({searchKey : this.strSearchPartsOrder})
     .then(result => {
         
         var arr = new Array(result);
         
+        //partsOrder data
         this.partsOrderId = arr[0].Id;
         this.partsOrderNumber = arr[0].Parts_Order_Number__c;
+        this.distributeCode = arr[0].DistributeCode__c;
+        this.dealerCode = arr[0].DealerCode__c;
+        this.orderType = arr[0].OrderType__c;
+        this.description = arr[0].Description__c;
         
+        //partsLineItem data
         var lineItemArr =  arr[0].Parts_Order_Line_Item__r;
         console.log(lineItemArr);
         this.lineItemArr2 = lineItemArr;
-
-  
-
-
-
+        
     }).catch(error=>{
         this.dispatchEvent(new ShowToastEvent({
             title: 'Error',
@@ -51,4 +47,30 @@ handleSearch() {
         }));
     });
 }
+
+sendPartOrder(){
+    console.log(this.partsOrderId);
+    
+    generateBody({productRequestId : this.partsOrderId})
+    .then(result => {
+        
+        console.log(result);
+
+        
+    }).catch(error=>{
+        this.dispatchEvent(new ShowToastEvent({
+            title: 'Error',
+            message: error.body.message,
+            variant: "error"
+        }));
+    });
+
+
+
+
+}
+
+
+
+
 }

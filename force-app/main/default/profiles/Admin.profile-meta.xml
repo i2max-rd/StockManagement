@@ -14,6 +14,18 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CXP_AMOS_PartsMaster_API_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CXP_AMOS_RestAPICalloutWrapper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>CXP_AMOS_RestAPIResponseWrapper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>CXP_GCS_DiagnosticTroubleInfo_API</apexClass>
         <enabled>true</enabled>
     </classAccesses>
@@ -22,7 +34,43 @@
         <enabled>true</enabled>
     </classAccesses>
     <classAccesses>
+        <apexClass>CXP_GCS_DiagnosticTroubleInfo_API_Test</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>MarketFactorTriggerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>PartsOrderController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ProductTriggerHandler</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ProductTriggerHelper</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>ProductTriggerTest</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>SendPartOrderToAMOS</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TestClass</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
         <apexClass>TransactionController</apexClass>
+        <enabled>true</enabled>
+    </classAccesses>
+    <classAccesses>
+        <apexClass>TriggerHandler</apexClass>
         <enabled>true</enabled>
     </classAccesses>
     <custom>false</custom>
@@ -53,6 +101,11 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Department__c.DealerCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Department__c.Department_Code__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -63,7 +116,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Department__c.DistributeCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Department__c.Language__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Department__c.MOBISSuffix__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -337,6 +400,11 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
+        <editable>false</editable>
+        <field>Parts_Inventory_Transaction__c.TransactionType__c</field>
+        <readable>false</readable>
+    </fieldPermissions>
+    <fieldPermissions>
         <editable>true</editable>
         <field>Parts_Inventory_Transaction__c.Transaction_Date__c</field>
         <readable>true</readable>
@@ -393,6 +461,16 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Parts_Order_Line_Item__c.AMOSConfirmPartNo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order_Line_Item__c.AMOSConfirmQty__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Parts_Order_Line_Item__c.AMOSDelAcceptYn__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -403,7 +481,22 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Parts_Order_Line_Item__c.AMOSMOBISSuffix__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Parts_Order_Line_Item__c.AMOSOrderNo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order_Line_Item__c.CancelCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order_Line_Item__c.CancelDescription__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -438,7 +531,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Parts_Order_Line_Item__c.DealerCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Parts_Order_Line_Item__c.Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order_Line_Item__c.DistributeCode__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order_Line_Item__c.ExternalID__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order_Line_Item__c.FreeHomeDelivery__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -448,12 +561,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
+        <field>Parts_Order_Line_Item__c.OrderLineNoCXP__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order_Line_Item__c.OrderNumberCXP__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order_Line_Item__c.OrderPartNo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
         <field>Parts_Order_Line_Item__c.Order_Line_No__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Parts_Order_Line_Item__c.Ordered_Product__c</field>
+        <field>Parts_Order_Line_Item__c.OrderedProduct__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -463,7 +591,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Parts_Order_Line_Item__c.Quantity_Requested__c</field>
+        <field>Parts_Order_Line_Item__c.ProductRequestLineItemNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order_Line_Item__c.ProductRequestNumber__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order_Line_Item__c.QuantityRequested__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order_Line_Item__c.UnitPrice__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order_Line_Item__c.fm_OrderQt__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -473,12 +621,17 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Parts_Order__c.AMOSMOBIS_Suffix__c</field>
+        <field>Parts_Order__c.AMOSMOBISSuffix__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Parts_Order__c.AMOS_Order_No__c</field>
+        <field>Parts_Order__c.AMOSOrderNo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order__c.CoDate__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -493,12 +646,27 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Parts_Order__c.Dealer_Code__c</field>
+        <field>Parts_Order__c.DealerCode__c</field>
         <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>false</editable>
+        <field>Parts_Order__c.DepartmentCode__c</field>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
         <field>Parts_Order__c.Department__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order__c.Description__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order__c.DistributeCode__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -508,12 +676,32 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Parts_Order__c.Order_Date__c</field>
+        <field>Parts_Order__c.IsOrderRequested__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Parts_Order__c.Order_Type__c</field>
+        <field>Parts_Order__c.OrderNoCXP__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order__c.OrderRecieveDate__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order__c.OrderRefNo__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order__c.OrderType__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Parts_Order__c.Order_Date__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -528,12 +716,12 @@
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Parts_Order__c.Status__c</field>
+        <field>Parts_Order__c.ProductRequestNumber__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
-        <field>Parts_Order__c.coDate__c</field>
+        <field>Parts_Order__c.Status__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -1191,14 +1379,15 @@
         <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>true</default>
+        <default>false</default>
         <recordType>Product2.Labor</recordType>
-        <visible>true</visible>
+        <visible>false</visible>
     </recordTypeVisibilities>
     <recordTypeVisibilities>
-        <default>false</default>
+        <default>true</default>
+        <personAccountDefault>true</personAccountDefault>
         <recordType>Product2.Parts</recordType>
-        <visible>false</visible>
+        <visible>true</visible>
     </recordTypeVisibilities>
     <tabVisibilities>
         <tab>Department__c</tab>
@@ -1206,6 +1395,10 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Diagnostic_Trouble_Info__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Order_Placement</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>
@@ -1218,6 +1411,14 @@
     </tabVisibilities>
     <tabVisibilities>
         <tab>Parts_Market_Factor__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Parts_Order_Line_Item__c</tab>
+        <visibility>DefaultOn</visibility>
+    </tabVisibilities>
+    <tabVisibilities>
+        <tab>Parts_Order__c</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
     <tabVisibilities>

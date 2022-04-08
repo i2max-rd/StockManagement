@@ -16,7 +16,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>AMOS_Order_No__c</field>
+                <field>AMOSOrderNo__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -36,7 +36,7 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Dealer_Code__c</field>
+                <field>DealerCode__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -44,11 +44,11 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>Order_Type__c</field>
+                <field>OrderType__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>AMOSMOBIS_Suffix__c</field>
+                <field>AMOSMOBISSuffix__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
@@ -60,11 +60,39 @@
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
-                <field>coDate__c</field>
+                <field>CoDate__c</field>
             </layoutItems>
             <layoutItems>
                 <behavior>Edit</behavior>
                 <field>CurrencyIsoCode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>DistributeCode__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>ProductRequestNumber__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OrderRefNo__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Description__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OrderNoCXP__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>OrderRecieveDate__c</field>
+            </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>IsOrderRequested__c</field>
             </layoutItems>
         </layoutColumns>
         <layoutColumns>
