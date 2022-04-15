@@ -18,46 +18,53 @@
                 </lightning-record-view-form>
                 <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
                     <thead>
-                        <tr>
-                            <th class="" scope="col">
-                                <div class="slds-truncate" title="Order Info">Order Info</div>
-                            </th>
-                            <th class="" scope="col">
-                                <div class="slds-truncate" title="Distribute Code">Distribute Code</div>
-                            </th>
-                            <th class="" scope="col">
-                                <div class="slds-truncate" title="Order Date">Order Date</div>
-                            </th>
-                            <th class="" scope="col">
-                                <div class="slds-truncate" title="Description">Description</div>
-                            </th>
-                            <th class="" scope="col">
-                                <div class="slds-truncate" title="Order Type">Order Type</div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
                         <template iterator:it={searchData}>
                             <tr key={it.value.Id}>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Order Info">Order Info</div>
+                                </th>
                                 <td>{it.value.Parts_Order_Number__c}</td>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Distribute Code">Distribute Code</div>
+                                </th>
                                 <td>{it.value.DepartmentCode__c}</td>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Order Date">Order Date</div>
+                                </th>
                                 <td>{it.value.Order_Date__c}</td>
-                                <td>{it.value.Description__c}</td>
+                                <th class="" scope="col" rowspan="2">
+                                    <div class="slds-truncate" title="Description">Description</div>
+                                </th>
+                                <td><textarea>{it.value.Description__c}</textarea></td>
+                            </tr>
+                            <tr key={it.value.Id}>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Order Type">Order Type</div>
+                                </th>
+                                <td>{it.value.Order_Type__c}</td>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Order Type">Dealer Code</div>
+                                </th>
+                                <td>{it.value.Dealer_Code__c}</td>
+                                <th class="" scope="col">
+                                    <div class="slds-truncate" title="Order Type">Shipping Address</div>
+                                </th>
                                 <td>{it.value.Order_Type__c}</td>
                             </tr>
                         </template>
-                    </tbody>
+                    </thead>
                 </table>
             </div>
                 <div class="slds-tabs_default">
                     <ul class="slds-tabs_default__nav" role="tablist">
                         <li class="slds-tabs_default__item slds-is-active" title="Parts Order" role="presentation">
+                            <a class="slds-tabs_default__link" href="#" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">Parts Order</a>
                         </li>
-                    </ul> 
-                    <ul class="slds-tabs_default__nav" role="tablist">
                         <li class="slds-tabs_default__item" title="Parts Shipping" role="presentation">
+                            <a class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">Parts Shipping</a>
                         </li>
-                    </ul> 
+                    </ul>
+                    <div id="tab-default-1" class="slds-tabs_default__content slds-show" role="tabpanel" aria-labelledby="tab-default-1__item">        
                 <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
                     <thead>
                         <tr>
@@ -94,6 +101,7 @@
                         </template>
                     </tbody>
                 </table>
+                </div>
             </div>   
     
         <!-- </template> -->

@@ -1,4 +1,4 @@
-trigger PartsMarketFactorTrigger on Parts_Market_Factor__c(
+trigger ProductTrigger on Product2(
     before insert,
     before update,
     before delete,
@@ -7,5 +7,5 @@ trigger PartsMarketFactorTrigger on Parts_Market_Factor__c(
     after delete,
     after undelete
 ) {
-    GME_TriggerDispatcher.Run(new PartsMarketFactorTriggerHandler());
+    new ProductTriggerHandler().run();
 }
