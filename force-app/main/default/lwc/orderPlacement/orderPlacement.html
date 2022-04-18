@@ -1,5 +1,28 @@
 <template>
-    <lightning-card title="Order Placement" icon-name="custom:custom93">
+    <article class="slds-card">
+        <div class="slds-card__header slds-grid">
+            <header class="slds-media slds-media_center slds-has-flexi-truncate">
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name="standard:fulfillment_order"></lightning-icon>
+                </div>
+                <div class="slds-media__body">
+                    <h5>Parts Order</h5>
+                    <h2 class="slds-card__header-title">
+                    <a href="#" class="slds-card__header-link slds-truncate" title="Card Header">
+                        <span>Order Placement</span>
+                    </a>
+                    </h2>
+                </div>
+                <div class="slds-no-flex">
+                    <button class="slds-button slds-button_neutral">Create Order</button>
+                    <button class="slds-button slds-button_brand">Request Order</button>
+                    <button class="slds-button slds-button_destructive" disabled="">Confirm Order</button>
+                </div>
+            </header>
+        </div>
+    </article>
+    <div class="slds-p-bottom_small"></div>
+    <lightning-card>
         <div class="slds-m-bottom_medium">
             <lightning-record-view-form object-api-name="Parts_Order__c">
                 <lightning-layout>
@@ -9,6 +32,15 @@
                     <lightning-layout-item size="3">
                         <lightning-input variant="label-inline" label="AMOS Order No." type="text"></lightning-input>
                     </lightning-layout-item>
+                    <div class="slds-form-element__control">
+                        <div class="slds-select_container">
+                            <select class="slds-select" id="select">
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                            </select>
+                        </div>
+                    </div>
                     <lightning-layout-item alignment-bump="left">
                         <lightning-button-icon icon-name="utility:refresh" class="slds-m-right_x-small"></lightning-button-icon>
                         <lightning-button label="Request Order" onclick={handleRequestOrder} class="slds-m-right_x-small"></lightning-button>
@@ -23,7 +55,7 @@
                                 <th class="" scope="col">
                                     <div class="slds-truncate" title="Order Info">Order Info</div>
                                 </th>
-                                <td>{it.value.Parts_Order_Number__c}</td>
+                                <td><a href="#">{it.value.Parts_Order_Number__c}</a></td>
                                 <th class="" scope="col">
                                     <div class="slds-truncate" title="Distribute Code">Distribute Code</div>
                                 </th>
@@ -32,10 +64,14 @@
                                     <div class="slds-truncate" title="Order Date">Order Date</div>
                                 </th>
                                 <td>{it.value.Order_Date__c}</td>
-                                <th class="" scope="col" rowspan="2">
+                                <th class="" scope="col">
                                     <div class="slds-truncate" title="Description">Description</div>
                                 </th>
-                                <td><textarea>{it.value.Description__c}</textarea></td>
+                                <td>
+                                    <div class="slds-form-element__control">
+                                        <textarea class="slds-textarea">{it.value.Description__c}</textarea>
+                                    </div>
+                                </td>
                             </tr>
                             <tr key={it.value.Id}>
                                 <th class="" scope="col">
@@ -64,46 +100,70 @@
                             <a class="slds-tabs_default__link" href="#" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">Parts Shipping</a>
                         </li>
                     </ul>
-                    <div id="tab-default-1" class="slds-tabs_default__content slds-show" role="tabpanel" aria-labelledby="tab-default-1__item">        
-                <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered">
-                    <thead>
-                        <tr>
-                            <th class="" scope="col">
-                                <input type="checkbox" title="chceckbox">
-                            </th>
-                            <th class="" scope="col">
-                                <div class="slds-truncate" title="No">No</div>
-                            </th>
-                            <th class="" scope="col">
-                                <div class="slds-truncate" title="Part Name">Part Name</div>
-                            </th>
-                            <th class="" scope="col">
-                                <div class="slds-truncate" title="Part Code">Part Code</div>
-                            </th>
-                            <th class="" scope="col">
-                                <div class="slds-truncate" title="Ordered Product Code">Ordered Product Code</div>
-                            </th>
-                            <th class="" scope="col">
-                                <div class="slds-truncate" title="Quantity Requested">Quantity Requested</div>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <template iterator:it={lineItems}>
-                            <tr key={it.value.Id}>
-                                <td><input type="checkbox"></td>
-                                <td>{it.value.Parts_Order_Line_Item_Number__c}</td>
-                                <td>{it.value.Name}</td>
-                                <td>{it.value.Parts_Order__r.Parts_Order_Number__c}</td>
-                                <td>{it.value.Ordered_Product__c}</td>
-                                <td>{}</td>
-                            </tr>
-                        </template>
-                    </tbody>
-                </table>
-                </div>
-            </div>   
-    
+                    <div id="tab-default-1" class="slds-tabs_default__content slds-show" role="tabpanel" aria-labelledby="tab-default-1__item">    
+                    <!-- parts order buttons -->
+                        <div>
+                            <lightning-layout>
+                                <lightning-layout-item alignment-bump="left">
+                                    <lightning-button class="slds-m-right_x-small" label="New"></lightning-button>
+                                    <lightning-button class="slds-m-right_x-small" label="Template Download"></lightning-button>
+                                    <lightning-button class="slds-m-right_x-small" label="CSV Upload"></lightning-button>
+                                    <lightning-button class="slds-m-right_x-small" label="Excel Export"></lightning-button>
+                                    <lightning-button class="slds-m-right_x-small" label="Delete" variant="destructive"></lightning-button>
+                                </lightning-layout-item> 
+                            </lightning-layout>
+                        </div>
+                        <!-- parts order table -->
+                        <table class="slds-table slds-table_cell-buffer slds-table_bordered">
+                            <thead>
+                                <tr class="slds-line-height_reset">
+                                    <th class="" scope="col">   
+                                        <lightning-input type="checkbox"></lightning-input>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="No">No</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Part Name">Part Name</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Part Code">Part Code</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Ordered Product Code">Ordered Product Code</div>
+                                    </th>
+                                    <th class="" scope="col">
+                                        <div class="slds-truncate" title="Quantity Requested">Quantity Requested</div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <template iterator:it={lineItems}>
+                                    <tr key={it.value.Id} class="slds-hint-parent">
+                                        <td>
+                                            <lightning-input type="checkbox"></lightning-input>
+                                        </td>
+                                        <th data-label="No" scope="row">
+                                            <div class="slds-truncate" title="No">{it.value.Parts_Order_Line_Item_Number__c}</div>
+                                        </th>
+                                        <td data-label="Part Name">
+                                            <div class="slds-truncate" title="Part Name">{it.value.Name}</div>
+                                        </td>
+                                        <td data-label="Part Code">
+                                            <div class="slds-truncate" title="Part Code">{it.value.Parts_Order__r.Parts_Order_Number__c}</div>
+                                        </td>
+                                        <td data-label="Ordered Product Code">
+                                            <div class="slds-truncate" title="Ordered Product Code">{it.value.Ordered_Product__c}</div>
+                                        </td>
+                                        <td data-label="Quantity Requested">
+                                            <div class="slds-truncate" title="Quantity Requested">{it.value.Ordered_Product__c}</div>
+                                        </td>
+                                    </tr>
+                                </template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>   
         <!-- </template> -->
         </lightning-card>
 </template>
